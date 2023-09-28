@@ -57,7 +57,7 @@ public class Movimientodeljugador : MonoBehaviour
         CapsuleDirection2D.Vertical,       // Dirección vertical del CapsuleCollider2D
         0f,                                // Ángulo de rotación
         Vector2.down,                      // Dirección hacia abajo
-        0.02f,                             // Longitud del rayo
+        0.0002f,                            // Longitud del rayo
         CapaSuelo);                        // Capa Que detectara el rayo
 
         return raycastHit.collider != null;
