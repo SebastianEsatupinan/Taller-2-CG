@@ -11,6 +11,7 @@ public class Movimientodeljugador : MonoBehaviour
     public float velocidad;
     public LayerMask CapaSuelo;
     public GameObject BulletPrefab;
+    public float tiempoDeEsperaEntreDisparos = 0.5f; // Tiempo de espera entre disparos (ajusta según tus necesidades)
 
     //Variables De uso privado
     private Rigidbody2D RG2D;
@@ -19,8 +20,10 @@ public class Movimientodeljugador : MonoBehaviour
     private float Horizontal;
     private int SaltosRestantes; 
     private Animator Animator;
-
+    private float tiempoUltimoDisparo = 0.0f;
     
+
+
 
     void Start()
     {
@@ -76,6 +79,7 @@ public class Movimientodeljugador : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) && SaltosRestantes > 0)
         {
+            Animator.SetTrigger("aSaltado");
             SaltosRestantes--;
             RG2D.velocity = new Vector2(RG2D.velocity.x,0f);
             RG2D.AddForce(Vector2.up * JumpForce);
@@ -84,32 +88,40 @@ public class Movimientodeljugador : MonoBehaviour
 
     private void Shoot()
     {
-        //Metodo de Disparo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Time.time - tiempoUltimoDisparo >= tiempoDeEsperaEntreDisparos)
         {
-            Vector3 direcionBala;
-            if (transform.localScale.x == 1.0f)
+            //Metodo de Disparo
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                direcionBala = Vector3.right;
+                Animator.SetTrigger("aDisparado");
+                Vector3 direcionBala;
+                if (transform.localScale.x == 1.0f)
+                {
+                    direcionBala = Vector3.right;
+                }
+                else
+                {
+                    direcionBala = Vector3.left;
+
+
+                }
+
+                GameObject bullet = Instantiate(BulletPrefab, transform.position + direcionBala * 0.1f, Quaternion.identity);
+                // Voltea la escala de la bala si el personaje mira hacia la izquierda
+                if (transform.localScale.x == -1.0f)
+                {
+                    Vector3 newScale = bullet.transform.localScale;
+                    newScale.x *= -1; // Invierte la escala en el eje X
+                    bullet.transform.localScale = newScale;
+                }
+
+                bullet.GetComponent<Disparo>().setDirection(direcionBala);
+
+                // Actualiza el tiempo del último disparo
+                tiempoUltimoDisparo = Time.time;
             }
-            else
-            {
-                direcionBala = Vector3.left;
-
-
-            }
-
-            GameObject bullet = Instantiate(BulletPrefab, transform.position + direcionBala * 0.1f, Quaternion.identity);
-            // Voltea la escala de la bala si el personaje mira hacia la izquierda
-            if (transform.localScale.x == -1.0f)
-            {
-                Vector3 newScale = bullet.transform.localScale;
-                newScale.x *= -1; // Invierte la escala en el eje X
-                bullet.transform.localScale = newScale;
-            }
-
-            bullet.GetComponent<Disparo>().setDirection(direcionBala);
         }
+       
     }
 
     private void FixedUpdate()

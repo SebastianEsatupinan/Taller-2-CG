@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 468173776}
   - component: {fileID: 468173775}
   - component: {fileID: 468173774}
+  - component: {fileID: 468173778}
   m_Layer: 5
   m_Name: Canvas Inicio
   m_TagString: Untagged
@@ -305,6 +306,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &468173778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468173773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed9190c6da45504d8e28b34757922c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &755794219
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1009,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1487206667}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 468173778}
+        m_TargetAssemblyTypeName: CambiodeEscena, Assembly-CSharp
+        m_MethodName: loadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Escena 1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1487206667
 MonoBehaviour:
   m_ObjectHideFlags: 0
