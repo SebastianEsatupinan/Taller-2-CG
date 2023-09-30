@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
-    public GameManager gameManager;
     public TextMeshProUGUI puntos;
     public GameObject[] Vidas;
 
     void Update()
     {
-        puntos.text = gameManager.PuntosTotales.ToString();
-        
+        // Accede al GameManager a través de su instancia Singleton
+        puntos.text = GameManager.Instance.PuntosTotales.ToString();
     }
 
     public void ActualizarPuntos(int PuntosTotales)
     {
+        // Accede al GameManager a través de su instancia Singleton
         puntos.text = PuntosTotales.ToString();
     }
 

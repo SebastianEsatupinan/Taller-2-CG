@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemigos : MonoBehaviour
 {
     public GameObject Player;
-    public GameManager manager;
 
     private void Update()
     {
@@ -29,7 +28,8 @@ public class Enemigos : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            manager.PerderVida();
+            // Accede al GameManager a través de su instancia Singleton
+            GameManager.Instance.PerderVida();
         }
     }
 }

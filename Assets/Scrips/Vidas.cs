@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Vidas : MonoBehaviour
 {
-    public GameManager manager;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        manager.RecuperarVida();
+        // Accede al GameManager a través de su instancia Singleton
+        GameManager.Instance.RecuperarVida();
+
+        // Destruye este objeto
         Destroy(this.gameObject);
     }
 }

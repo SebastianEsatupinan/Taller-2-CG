@@ -6,12 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     public int PuntosPerdidos;
     public string sceneName;
     public HUD HUD;
     public int PuntosTotales { get { return puntosTotales; } }
     private int puntosTotales;
     private int vida = 3;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void SumarPuntos(int puntosAsumar)
     {

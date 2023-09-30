@@ -7,7 +7,6 @@ public class Disparo : MonoBehaviour
     private Rigidbody2D Rigidbody2D;
     public float velocidadBala;
     private Vector2 DirecionBala;
-
     public float tiempoDeVida = 2.0f; // Duración en segundos
     private float tiempoTranscurrido = 0.0f; // El tiempo que ha pasado desde que se instanció la bala
 
@@ -34,12 +33,29 @@ public class Disparo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Detecta una colisión con el entorno
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Suelo"))
+        // Detecta una colicción con un enemigo
+        if (collision.gameObject.CompareTag("Enemigos"))
         {
+            // Obtén una referencia al GameManager
+            GameManager gameManager = GameManager.Instance;
+
+            // Suma puntos al GameManager
+            gameManager.SumarPuntos(15);
+
+            // Destruye al enemigo
+            Destroy(collision.gameObject);
+
+            // Destruye la bala
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Suelo"))
+        {
+            // Si colisiona con el suelo, destruye la bala
             Destroy(gameObject);
         }
     }
+
+
 
     public void setDirection(Vector2 direction)
     {
