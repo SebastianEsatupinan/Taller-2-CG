@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1536377738821281782}
   - component: {fileID: 9099101595644368423}
   - component: {fileID: 5968319571765176394}
+  - component: {fileID: -7400627705512156435}
   m_Layer: 0
   m_Name: player-shoot
   m_TagString: Untagged
@@ -163,3 +164,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadBala: 1
   tiempoDeVida: 2
+--- !u!114 &-7400627705512156435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347532555686729222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53dbacf4ea62e14192ed8a7ed0a68c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 174194577167551411}
   - component: {fileID: -2216903121758587392}
   - component: {fileID: 3752010769371293636}
+  - component: {fileID: -101042847777663070}
   m_Layer: 0
   m_Name: Gema 3
   m_TagString: Untagged
@@ -156,5 +157,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   valor: 50
-  manager: {fileID: 0}
   MonedaFX: {fileID: 0}
+--- !u!114 &-101042847777663070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417866150716607597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53dbacf4ea62e14192ed8a7ed0a68c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
