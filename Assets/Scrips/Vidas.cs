@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Sebastian Estupiñan Sanchez
 public class Vidas : MonoBehaviour
 {
+    /// <summary>
+    /// Método llamado cuando un objeto entra en el colisionador de este objeto.
+    /// Accede al GameManager a través de su instancia Singleton para intentar recuperar una vida.
+    /// </summary>
+    /// <param name="collision">El colisionador del objeto que entra en contacto con este objeto.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Accede al GameManager a través de su instancia Singleton
+        // Accede al GameManager a través de su instancia Singleton para intentar recuperar una vida
         bool vidaRecuperada = GameManager.Instance.RecuperarVida();
 
         if (vidaRecuperada)
