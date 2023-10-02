@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemigoDisparo : MonoBehaviour
+public class EnemigosDisparo : MonoBehaviour
 {
     public GameObject Player;
     public GameObject BulletPrefab;
-    private float LastShoot;
+    public float tiempoDeEsperaEntreDisparos = 2.0f;
+    private float tiempoUltimoDisparo = 0.0f;
 
-    private void Update()
+    void Update()
     {
         MirarJugador();
+        Disparar();
     }
 
     private void MirarJugador()
     {
         Vector3 direction = Player.transform.position - transform.position;
+
         if (direction.x >= 0.0f)
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
@@ -24,59 +27,27 @@ public class EnemigoDisparo : MonoBehaviour
         {
             transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
-
-        float distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
-        if (distance < 1.0f && Time.time > LastShoot + 0.5f)
-        {
-            Shoot();
-            LastShoot = Time.time;
-        }
-
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Disparar()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (Time.time - tiempoUltimoDisparo >= tiempoDeEsperaEntreDisparos)
         {
-            // Accede al GameManager a través de su instancia Singleton
-            GameManager.Instance.PerderVida();
+            Vector3 direccionBala = transform.localScale.x == 1.0f ? Vector3.right : Vector3.left;
+            GameObject bullet = Instantiate(BulletPrefab, transform.position + direccionBala * 0.1f, Quaternion.identity);
+
+            // Voltea la escala de la bala si el enemigo mira hacia la izquierda
+            if (transform.localScale.x == -1.0f)
+            {
+                Vector3 newScale = bullet.transform.localScale;
+                newScale.x *= -1; // Invierte la escala en el eje X
+                bullet.transform.localScale = newScale;
+            }
+
+            bullet.GetComponent<Disparo>().setDirection(direccionBala);
+            tiempoUltimoDisparo = Time.time;
         }
     }
 
-    private void Shoot()
-    {
-
-        Vector3 direcionBala;
-        if (transform.localScale.x == 1.0f)
-        {
-            direcionBala = Vector3.right;
-        }
-        else
-        {
-            direcionBala = Vector3.left;
-
-
-        }
-
-        GameObject bullet = Instantiate(BulletPrefab, transform.position + direcionBala * 0.1f, Quaternion.identity);
-        // Voltea la escala de la bala si el personaje mira hacia la izquierda
-
-
-        bullet.GetComponent<Disparo>().setDirection(direcionBala);
-
-        // Actualiza el tiempo del último disparo
-
-    }
-
-
-
-
+    // Resto del código
 }
-
-
-
-
-
-
-
-

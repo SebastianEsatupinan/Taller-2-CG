@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     // Instancia única de GameManager para el patrón Singleton
     public static GameManager Instance { get; private set; }
 
-    // Nombre de la escena a cargar
-    public string sceneName;
+    public LevelManager LevelManager;
 
     // Referencia al HUD para actualizar los puntos y las vidas
     public HUD HUD;
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            vida = 3; // Asegúrate de inicializar las vidas aquí
         }
         else
         {
@@ -64,26 +64,16 @@ public class GameManager : MonoBehaviour
         vida--;
 
         // Si el jugador se queda sin vidas, carga la escena y actualiza el HUD con los puntos actuales
-        if (vida == 0)
+        if (vida <= 0)
         {
-            SceneManager.LoadScene(sceneName);
-            HUD.ActualizarPuntos(puntosTotales);
+            {
+               ResetearPuntos();
+               LevelManager.ReiniciarNivel();
+            }
         }
 
         // Desactiva el objeto de vida correspondiente en el HUD
         HUD.DesactivarVida(vida);
-    }
-
-    /// <summary>
-    /// Establece la vida del jugador a 0 y carga la escena.
-    /// </summary>
-    public void MuerteSubita()
-    {
-        // Establece la vida del jugador a 0
-        vida = 0;
-
-        // Carga la escena especificada en sceneName
-        SceneManager.LoadScene(sceneName);
     }
 
     /// <summary>
@@ -93,7 +83,7 @@ public class GameManager : MonoBehaviour
     public bool RecuperarVida()
     {
         // Verifica si el jugador ya tiene 3 vidas
-        if (vida == 3)
+        if (vida >= 3)
         {
             // Si ya tiene 3 vidas, retorna false
             return false;
@@ -121,15 +111,11 @@ public class GameManager : MonoBehaviour
         HUD.ActualizarPuntos(puntosTotales);
     }
 
-    /// <summary>
-    /// Carga la escena especificada en sceneName y resetea los puntos.
-    /// </summary>
-    public void LoadScene()
+    public void ReiniciarVidas()
     {
-        // Resetea 100 puntos del total
-        ResetearPuntos();
-
-        // Carga la escena especificada en sceneName
-        SceneManager.LoadScene(sceneName);
+        vida = 3;
+        HUD.ReiniciarVidas(); // Llama a un método en el HUD para reiniciar las imágenes de las vidas
     }
+
+
 }

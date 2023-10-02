@@ -59,7 +59,7 @@ public class Movimientodeljugador : MonoBehaviour
             CapsuleDirection2D.Vertical,
             0f,
             Vector2.down,
-            0.0002f,
+            0.02f,
             CapaSuelo);
 
         return raycastHit.collider != null;
@@ -93,7 +93,7 @@ public class Movimientodeljugador : MonoBehaviour
             {
                 Animator.SetTrigger("aDisparado");
                 Vector3 direccionBala = transform.localScale.x == 1.0f ? Vector3.right : Vector3.left;
-                GameObject bullet = Instantiate(BulletPrefab, transform.position + direccionBala * 0.1f, Quaternion.identity);
+                GameObject bullet = Instantiate(BulletPrefab, transform.position + direccionBala * 0.2f, Quaternion.identity);
 
                 // Voltea la escala de la bala si el personaje mira hacia la izquierda
                 if (transform.localScale.x == -1.0f)

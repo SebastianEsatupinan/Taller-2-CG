@@ -48,28 +48,14 @@ public class HUD : MonoBehaviour
     /// <param name="indice">El índice del objeto de vida a desactivar.</param>
     public void DesactivarVida(int indice)
     {
-        // Verifica si el array Vidas no es nulo y si el índice está dentro del rango válido
-        if (Vidas != null && indice >= 0 && indice < Vidas.Length)
+        if (indice >= 0 && indice < Vidas.Length)
         {
-            // Desactiva el objeto de vida en el índice especificado
-            Vidas[indice].gameObject.SetActive(false);
+            Vidas[indice].SetActive(false);
         }
-        else
-        {
-            // Muestra errores específicos si el array Vidas es nulo o el índice está fuera del rango válido
-            if (Vidas == null)
-            {
-                Debug.LogError("El array Vidas no está inicializado.");
-            }
-            else if (indice < 0 || indice >= Vidas.Length)
-            {
-                Debug.LogError("Índice fuera de rango: " + indice);
-            }
-            else
-            {
-                // Muestra un mensaje de error genérico si ocurre algún otro error desconocido
-                Debug.LogError("Error desconocido al desactivar la vida.");
-            }
+        else if(indice >= 0 && indice > Vidas.Length)
+        { 
+            Debug.LogError("Índice fuera de rango o array Vidas no inicializado correctamente.");
+            return;
         }
     }
 
@@ -79,32 +65,22 @@ public class HUD : MonoBehaviour
     /// <param name="indice">El índice del objeto de vida a activar.</param>
     public void ActivarVida(int indice)
     {
-        // Verifica si el array Vidas no es nulo y si el índice está dentro del rango válido
-        if (Vidas != null && indice >= 0 && indice < Vidas.Length && Vidas[indice] != null)
+        if (indice >= 0 && indice < Vidas.Length && Vidas[indice] != null)
         {
-            // Activa el objeto de vida en el índice especificado
-            Vidas[indice].gameObject.SetActive(true);
+            Vidas[indice].SetActive(true);
         }
         else
         {
-            // Muestra errores específicos si el array Vidas es nulo, el índice está fuera del rango válido o el objeto de vida en el índice especificado es nulo
-            if (Vidas == null)
-            {
-                Debug.LogError("El array Vidas no está inicializado.");
-            }
-            else if (indice < 0 || indice >= Vidas.Length)
-            {
-                Debug.LogError("Índice fuera de rango: " + indice);
-            }
-            else if (Vidas[indice] == null)
-            {
-                Debug.LogError("El objeto en Vidas[" + indice + "] es null.");
-            }
-            else
-            {
-                // Muestra un mensaje de error genérico si ocurre algún otro error desconocido
-                Debug.LogError("Error desconocido al activar la vida.");
-            }
+            Debug.LogError("Índice fuera de rango o array Vidas no inicializado correctamente.");
+        }
+
+    }
+
+    public void ReiniciarVidas()
+    {
+        for (int i = 0; i < Vidas.Length; i++)
+        {
+            Vidas[i].SetActive(true);
         }
     }
 }
