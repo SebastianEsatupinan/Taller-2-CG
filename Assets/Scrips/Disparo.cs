@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ public class Disparo : MonoBehaviour
     private Rigidbody2D Rigidbody2D;
     public float velocidadBala;
     private Vector2 DirecionBala;
-    public float tiempoDeVida = 2.0f; // Duración en segundos
-    private float tiempoTranscurrido = 0.0f; // El tiempo que ha pasado desde que se instanció la bala
+    public float tiempoDeVida = 2.0f; // Duraciî‰¢ en segundos
+    private float tiempoTranscurrido = 0.0f; // El tiempo que ha pasado desde que se instanciãƒ»la bala
 
 
     void Start()
@@ -33,10 +33,10 @@ public class Disparo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Detecta una colicción con un enemigo
+        // Detecta una colicciî‰¢ con un enemigo
         if (collision.gameObject.CompareTag("Enemigos"))
         {
-            // Obtén una referencia al GameManager
+            // Obté§­ una referencia al GameManager
             GameManager gameManager = GameManager.Instance;
 
             // Suma puntos al GameManager
