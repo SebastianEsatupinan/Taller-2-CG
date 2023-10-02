@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
     {
         vida -= 1;
 
-        if(vida == 0)
+        if (vida == 0)
         {
-            loadScene();
+            SceneManager.LoadScene(sceneName);
             HUD.ActualizarPuntos(puntosTotales);
         }
 
@@ -49,12 +49,12 @@ public class GameManager : MonoBehaviour
     public void MuerteSubita()
     {
         vida = 0; // Establece la vida del jugador a 0
-        loadScene();
+        SceneManager.LoadScene(sceneName);
     }
 
     public bool RecuperarVida()
     {
-        if(vida == 3)
+        if (vida == 3)
         {
             return false;
         }
@@ -70,11 +70,9 @@ public class GameManager : MonoBehaviour
         HUD.ActualizarPuntos(puntosTotales);
     }
 
-
     public void loadScene()
     {
         ResetearPuntos();
         SceneManager.LoadScene(sceneName);
     }
-
 }

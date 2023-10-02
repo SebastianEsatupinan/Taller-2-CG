@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,13 +21,13 @@ public class HUD : MonoBehaviour
 
     void Update()
     {
-        // Accede al GameManager a travÈs de su instancia Singleton
+        // Accede al GameManager a travÈß∏ de su instancia Singleton
         puntos.text = GameManager.Instance.PuntosTotales.ToString();
     }
 
     public void ActualizarPuntos(int PuntosTotales)
     {
-        // Accede al GameManager a travÈs de su instancia Singleton
+        // Accede al GameManager a travÈß∏ de su instancia Singleton
         puntos.text = PuntosTotales.ToString();
     }
 
@@ -39,7 +39,7 @@ public class HUD : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Õndice fuera de rango o array Vidas no inicializado correctamente.");
+            Debug.LogError("Ôæçndice fuera de rango o array Vidas no inicializado correctamente.");
         }
     }
 
@@ -51,14 +51,14 @@ public class HUD : MonoBehaviour
         }
         else
         {
-            // AÒade una comprobaciÛn adicional para asegurarte de que Vidas[indice] no sea null
+            // AÓÉùde una comprobaciÓâ¢ adicional para asegurarte de que Vidas[indice] no sea null
             if (Vidas == null)
             {
-                Debug.LogError("El array Vidas no est· inicializado.");
+                Debug.LogError("El array Vidas no est„Éªinicializado.");
             }
             else if (indice < 0 || indice >= Vidas.Length)
             {
-                Debug.LogError("Õndice fuera de rango: " + indice);
+                Debug.LogError("Ôæçndice fuera de rango: " + indice);
             }
             else if (Vidas[indice] == null)
             {

@@ -1,12 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CambiodeEscena : MonoBehaviour
+public class MenuInicial : MonoBehaviour
 {
-    public void loadScene(string sceneName)
+    public void Jugar()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+
+
     }
+
+    public void Salir()
+    {
+        Debug.Log("Salir...:");
+        Application.Quit();
+    }
+
 }

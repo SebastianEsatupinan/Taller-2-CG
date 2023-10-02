@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,9 +11,9 @@ public class Gems : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Colisión con las gemas");
+            Debug.Log("Colisiî‰¢ con las gemas");
 
-            // Accede al GameManager a través de su instancia Singleton
+            // Accede al GameManager a travé§¸ de su instancia Singleton
             GameManager.Instance.SumarPuntos(valor);
 
             // Reproduce el sonido de la moneda si lo deseas
